@@ -13,10 +13,10 @@ sender = 'sender@gmail.com'
 print 'Please enter the password for ' + sender
 pw = getpass.getpass()
 
-def testDwarfMail(to, kindle):
+def testKindleMail(to, kindle):
     print kindle + ' would be sent to ' + to
 
-def sendDwarfMail(to, kindle):
+def sendKindleMail(to, kindle):
     msg = MIMEMultipart()
     msg['From'] = sender
     msg['To'] = to
@@ -31,18 +31,17 @@ def sendDwarfMail(to, kindle):
     mailserver.login(sender, pw)
 
     mailserver.sendmail(sender, to, msg.as_string())
-
     mailserver.quit()
 
-d2 = list(kindles)
+shuffeled_kindles = list(kindles)
 same = 1;
 while same == 1:
     same = 0
-    random.shuffle(d2)
-    for index, kindle in enumerate(d2):
+    random.shuffle(shuffeled_kindles)
+    for index, kindle in enumerate(shuffeled_kindles):
         if kindles[index] == kindle:
            same = 1
 
-for index, kindle in enumerate(d2):
-    testDwarfMail(kindles[index][0], kindle[1])
-    #sendDwarfMail(kindles[index][0], kindle[1])
+for index, kindle in enumerate(shuffeled_kindles):
+    testKindleMail(kindles[index][0], kindle[1])
+    #sendKindleMail(kindles[index][0], kindle[1])
